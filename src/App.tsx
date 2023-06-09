@@ -4,6 +4,7 @@ import TodoApp from './components/TodoApp';
 import { TodoProvider } from './context';
 import { AppContainer } from './styles';
 
+
 const theme = createTheme();
 
 const App: React.FC = () => {
