@@ -1,8 +1,8 @@
-type Todo = {
+interface Todo {
   id: number;
   text: string;
   completed: boolean;
-};
+}
 
 type TodoContextType = {
   todos: Todo[];
