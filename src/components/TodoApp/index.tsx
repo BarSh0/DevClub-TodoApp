@@ -5,19 +5,13 @@ import {
   Input,
   Typography,
 } from '@mui/material';
-import React, { Dispatch, useState } from 'react';
+import React, { useState } from 'react';
 import { StyledPaper, TodoItem, TodoList } from '../../styles';
-import { addTodo } from '../../redux/reducers/todoReducer';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../redux/store';
 import { Todo } from '../../types';
-import { fetchData } from '../../redux/actions/fetchData';
 
 const TodoApp: React.FC = () => {
-  const todos = useSelector((state: RootState) => state.TodoReducer.todos);
-  const dispatch: AppDispatch = useDispatch();
-
   const [newTodoText, setNewTodoText] = useState('');
+  const todos: Todo[] = [];
 
   const handleAddTodo = () => {
     if (newTodoText.trim()) {
@@ -26,13 +20,13 @@ const TodoApp: React.FC = () => {
         text: newTodoText.trim(),
         completed: false,
       };
-      dispatch(addTodo(newTodo));
+      //TODO - add item to global state
       setNewTodoText('');
     }
   };
 
   const handleAsyncTask = () => {
-    dispatch(fetchData());
+    alert('Try to add thunk');
   };
 
   return (
