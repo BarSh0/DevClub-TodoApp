@@ -5,16 +5,17 @@ import {
   Input,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { Dispatch, useState } from 'react';
 import { StyledPaper, TodoItem, TodoList } from '../../styles';
 import { addTodo } from '../../redux/reducers/todoReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { AppDispatch, RootState } from '../../redux/store';
 import { Todo } from '../../types';
+import { fetchData } from '../../redux/actions/fetchData';
 
 const TodoApp: React.FC = () => {
   const todos = useSelector((state: RootState) => state.TodoReducer.todos);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const [newTodoText, setNewTodoText] = useState('');
 
@@ -30,8 +31,13 @@ const TodoApp: React.FC = () => {
     }
   };
 
+  const handleAsyncTask = () => {
+    dispatch(fetchData());
+  };
+
   return (
     <StyledPaper elevation={3}>
+      <button onClick={handleAsyncTask}>Click me to add something</button>
       <Typography variant='h5' component='h1' align='center' gutterBottom>
         Todo App
       </Typography>
